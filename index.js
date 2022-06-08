@@ -134,6 +134,7 @@ export default class VideoPlayer extends Component {
       isControlsVisible: !props.hideControlsOnStart,
       duration: 0,
       isSeeking: false,
+      stereoPan:1,
     };
 
     this.seekBarWidth = 200;
@@ -258,7 +259,6 @@ export default class VideoPlayer extends Component {
       isMuted,
     });
     this.showControls();
-
   }
 
   onToggleFullScreen() {
@@ -321,6 +321,7 @@ export default class VideoPlayer extends Component {
   onSeekEvent(e) {
     this.currentTime?.setNativeProps({ text: getDurationTime(e.currentTime) })
   }
+
 
   getSizeStyles() {
     const { videoWidth, videoHeight } = this.props;
@@ -603,6 +604,7 @@ VideoPlayer.propTypes = {
   paused: PropTypes.bool,
   defaultMuted: PropTypes.bool,
   muted: PropTypes.bool,
+  stereoPan: PropTypes.number,
   style: ViewPropTypesVar.style,
   controlsTimeout: PropTypes.number,
   disableControlsAutoHide: PropTypes.bool,
@@ -642,7 +644,7 @@ VideoPlayer.propTypes = {
   onHideControls: PropTypes.func,
   onShowControls: PropTypes.func,
   onMutePress: PropTypes.func,
-  showDuration: PropTypes.bool
+  showDuration: PropTypes.bool,
 };
 
 VideoPlayer.defaultProps = {
@@ -656,5 +658,6 @@ VideoPlayer.defaultProps = {
   pauseOnPress: false,
   fullScreenOnLongPress: false,
   customStyles: {},
-  showDuration: false
+  showDuration: false,
+  stereoPan: 0,
 };
